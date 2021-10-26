@@ -1,10 +1,12 @@
 package com.revature.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -37,7 +39,20 @@ public class UserServiceTest {
 	void registerUser() {}
 			
 	@Test
-	void authenticate() {}
+	void authenticate() {
+		
+		List<Book> fake1 = new ArrayList<>();
+		List<Book> fake2 = new ArrayList<>();
+		User fakeuser =  new User ("yibeltal","yib@gmail.com","pass",fake1,fake2);
+		
+		when(userDao.selectUser("yibeltal")).thenReturn(fakeuser);
+		User user = userService.authenticate("yibeltal","pass");
+		
+		assertEquals(user.getUsername(),fakeuser.getUsername());
+		assertEquals(user.getEmail(),fakeuser.getEmail());
+		assertEquals(user.getPassword(),fakeuser.getPassword());
+		
+	}
 		
 	@Test
 	void updatePassword() {
