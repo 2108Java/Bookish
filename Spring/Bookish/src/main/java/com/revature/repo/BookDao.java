@@ -1,10 +1,8 @@
 package com.revature.repo;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 import com.revature.models.Book;
-import com.revature.models.Rating;
-import com.revature.models.UserBook;
 
 public interface BookDao {
 
@@ -12,8 +10,14 @@ public interface BookDao {
 	boolean insertBook(Book book);
 	
 	//get book
-	Book selectBook(int id);//by id
+	Book selectBook(String id);//by id
 	
-	Book selectBook(String nameOrAuthor);//by name or author
+	//update book
+	//rate a book
+	//review a book
+	//finish a book
+	boolean updateUserBook(Book book);
+	
+	//List<Book> selectBook(String nameOrAuthor);//by name or author
 	
 }
