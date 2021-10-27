@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -37,7 +38,9 @@ public class UserServiceTest {
 	void registerUser() {}
 			
 	@Test
-	void authenticate() {}
+	void authenticate() {
+		
+	}
 		
 	@Test
 	void updatePassword() {
