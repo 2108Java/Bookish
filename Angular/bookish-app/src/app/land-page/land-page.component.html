@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="/assets/book-icon.png" class="logo">
+    <a class="navbar-brand" href="#">Bookish</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class= "nav-right">
+        <input type="text" class="search-box" placeholder="Search" name="query">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search by
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Title</a>
+              <a class="dropdown-item" href="#">Author</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+    </div>
+</nav>
+
+<div class="user-options">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action">View read list</a>
+        <a href="#" class="list-group-item list-group-item-action">View to-read list</a>
+        <a href="#" class="list-group-item list-group-item-action">View current book</a>
+    </div>
+  </div>
+
+<form class="search-book" style="width: 80%">
+    <h2>Look up books</h2>
+    <div class="form-group row" style="padding-top: 10px;">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Enter input</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="Type here" style="width: 50%">
+      </div>
+    </div>
+    <fieldset class="form-group" style="padding-top: 8px">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Select by</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+              <label class="form-check-label" for="gridRadios1">
+                Title
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+              <label class="form-check-label" for="gridRadios2">
+                Author
+              </label>
+            </div>
+    </div>
+        </div>
+    </fieldset>
+</form>

@@ -5,10 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookService } from './services/book.service';
 import { UserService } from './services/user.service';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LandPageComponent } from './land-page/land-page.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    LandPageComponent
   ],
   imports: [
     BrowserModule,

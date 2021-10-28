@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.logo{
+    height: 3%;
+    width: 3%;
+    left: 8px;
+}
+
+.nav-right{
+    position: absolute;
+    top: 8px;
+    right: 300px;
+}
+
+.dropdown{
+    position: absolute;
+    top: 0px;
+    right: -150px;
+}
+
+.search-book{
+    position: absolute;
+    left: 220px;
+    top: 80px;
+}
+
+.user-options{
+    background-color: rgb(201, 63, 63);
+    width: 200px;
+    height: 675px;
+}
+
+.option-list{
+    padding-left: 10px;
+}
+
+.list-group-item list-group-item-action{
+    height: 50%
+}
