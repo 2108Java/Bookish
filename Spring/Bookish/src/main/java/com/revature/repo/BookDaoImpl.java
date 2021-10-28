@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.Book;
+import com.revature.models.User;
 
 @Repository("bookDao")
 @Transactional
@@ -24,21 +25,32 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public List<Book> selectBookList(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Book> selectBookList(User user) {
+		
+		String hql = "from Book where user = '" + user + "'";
+		
+		List<Book> bookList = sessionFactory.openSession().createQuery(hql, Book.class).list();
+		
+		return bookList;
 	}
 
 	@Override
 	public boolean insertBookList(List<Book> newBookList) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		for(Book book: newBookList) {
+			sessionFactory.openSession().persist(book);
+		}
+		return true;
 	}
 
 	@Override
 	public boolean deleteBookList(List<Book> oldBookList) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		for(Book book: oldBookList) {
+			sessionFactory.openSession().delete(book);
+		}
+		
+		return true;
 	}
 
 	

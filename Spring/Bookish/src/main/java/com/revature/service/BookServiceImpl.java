@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +36,18 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public boolean updateBookList(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean success = false;
+		
+		List<Book> oldBookList = bookDao.selectBookList(user);
+		List<Book> newBookList = user.getUserBooks();
+		
+		if(bookDao.deleteBookList(oldBookList)) {
+			if(bookDao.insertBookList(newBookList)) {
+				success = true;
+			}
+		}
+		
+		return success;
 	}
 
 }

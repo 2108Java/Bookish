@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -23,17 +24,18 @@ public class User {
 	
 	@Id
 	@Column(name = "username")
-	String username;
+	private String username;
 	
 	@Column(name = "email")
-	String email;
+	private String email;
 	
 	@Column(name = "password")
-	String password;
+	private String password;
 	//image
 	
-	@OneToMany(mappedBy = "user")
-	List<Book> userBooks;
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	private List<Book> userBooks;
 	
 //	@ManyToMany
 //	List<Book> toRead;

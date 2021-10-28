@@ -3,6 +3,7 @@ package com.revature.repo;
 import java.util.List;
 
 import com.revature.models.Book;
+import com.revature.models.User;
 
 public interface BookDao {
 
@@ -10,7 +11,7 @@ public interface BookDao {
 	boolean insertBook(Book book);
 	
 	//get book list
-	List<Book> selectBookList(String username); //get a users list of books
+	List<Book> selectBookList(User user); //get a users list of books
 	
 	//update book
 	//rate a book

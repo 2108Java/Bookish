@@ -1,7 +1,5 @@
 package com.revature.repo;
 
-
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,19 +14,19 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	
 	@Override
 	public boolean insertUser(User user) {
-		
 		return false;
 	}
 
 	@Override
 	public User selectUser(String username) {
-//		String hql = "from User where username = '" + username + "'";
 		
-		User user = sessionFactory.openSession().get(User.class, username);
-		sessionFactory.close();
-//		User user = sessionFactory.getCurrentSession().get(User.class, username);
+		User user = sessionFactory.openSession().get(User.class, username);// this fixes the EntityManagerFactory is closed error
+//		sessionFactory.close();
+		
+//		User user = sessionFactory.getCurrentSession().get(User.class, username); // this throws No CurrentSessionContext configured
 		return user;
 	}
 
