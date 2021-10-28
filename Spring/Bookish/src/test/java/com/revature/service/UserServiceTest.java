@@ -41,8 +41,7 @@ public class UserServiceTest {
 	@Test
 	void authenticate() {
 		List<Book> fake1 = new ArrayList<>();
-		List<Book> fake2 = new ArrayList<>();
-		User fakeuser =  new User ("yibeltal","yib@gmail.com","pass",fake1,fake2);
+		User fakeuser =  new User ("yibeltal","yib@gmail.com","pass",fake1);
 		
 		when(userDao.selectUser("yibeltal")).thenReturn(fakeuser);
 		User user = userService.authenticate("yibeltal","pass");

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 public class User {
 	
+	@Id
 	@Column(name = "username")
 	String username;
 	
@@ -29,7 +32,10 @@ public class User {
 	String password;
 	//image
 	
-	List<Book> read;
-	List<Book> toRead;
+	@OneToMany(mappedBy = "user")
+	List<Book> userBooks;
+	
+//	@ManyToMany
+//	List<Book> toRead;
 
 }

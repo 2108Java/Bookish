@@ -22,9 +22,4 @@ public interface UserService {
 	//update password
 	boolean updatePassword(String username, String password);
 	
-	//get list of books
-	List<Book> readList(String username);
-	
-	List<Book> toReadList(String username);
-	
 }
