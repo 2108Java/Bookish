@@ -7,13 +7,21 @@ import { BookService } from './services/book.service';
 import { UserService } from './services/user.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LandPageComponent } from './land-page/land-page.component';
+import { ReadListComponent } from './read-list/read-list.component';
+import { ToReadListComponent } from './to-read-list/to-read-list.component';
+import { CurrentListComponent } from './current-list/current-list.component';
+import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    LandPageComponent
+    LandPageComponent,
+    ReadListComponent,
+    ToReadListComponent,
+    CurrentListComponent,
+    ProfileMenuComponent
   ],
   imports: [
     BrowserModule,
