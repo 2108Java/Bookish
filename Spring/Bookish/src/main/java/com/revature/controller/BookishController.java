@@ -99,13 +99,17 @@ public class BookishController {
 	
 	//Update password - put
 	@PutMapping(value = "/password")
-	public String updatePassword(@RequestBody String password) {
-		String message = "Password not updated.";
+	public String updatePassword(@RequestBody String password,HttpSession session) {
+		System.out.println("controller");
+		String username1 = (String) session.getAttribute("username");
+		String message = userService.updatePassword(username1,password);
 		
-		testUser.setPassword(password);
-		if(testUser.getPassword().equals(password)) {
-			message = "Password updated successfully.";
-		}
+//		String message = "Password not updated.";
+		
+//		testUser.setPassword(password1);
+//		if(testUser.getPassword().equals(password1)) {
+//			message = "Password updated successfully.";
+//		}
 		
 		return message;
 	}

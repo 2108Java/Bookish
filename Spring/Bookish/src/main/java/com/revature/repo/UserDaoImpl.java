@@ -1,11 +1,9 @@
 package com.revature.repo;
 
-<<<<<<< HEAD
 import org.hibernate.Session;
-=======
->>>>>>> 1e219574783aef2f6b99413082c8e5f75bf331e2
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +20,6 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public boolean insertUser(User user) {
-<<<<<<< HEAD
 		
 		boolean check = true;
 		
@@ -44,9 +41,6 @@ public class UserDaoImpl implements UserDao {
 //		sessionFactory.openSession().save(user);
 		return check;
 	
-=======
-		return false;
->>>>>>> 1e219574783aef2f6b99413082c8e5f75bf331e2
 	}
 	
 	@Override
@@ -61,8 +55,22 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean updateUser(String username, String password) {
-		// TODO Auto-generated method stub
-		return false;
+		System.out.println("Repository");
+		boolean check = true;
+		try(Session ses = sessionFactory.openSession()){
+			Transaction tx = ses.beginTransaction();
+			User user = ses.load(User.class, username);
+			System.out.println(ses.load(User.class, username));
+			user.setPassword(password);
+	        ses.update(user);
+	        tx.commit();
+	        ses.close();
+			} catch(Exception e) {
+				check = false;
+				e.printStackTrace();
+			}
+		return check;
+			
 	}
 
 }

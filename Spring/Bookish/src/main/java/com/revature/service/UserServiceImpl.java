@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String registerUser(User user) {
 		String message = "";
+		user.setPassword(encrypt(user.getPassword()));
 		if (userDao.insertUser(user)) {
 			message = "Registration was successful.";
 		}
@@ -72,9 +73,19 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean updatePassword(String username, String password) {
-		// TODO Auto-generated method stub
-		return false;
+	public String updatePassword(String username, String password) {
+		System.out.println("Service");
+		String message="";
+		//userDao.updateUser(username,encrypt(password))
+		if (userDao.updateUser(username,encrypt(password))) {
+			message = "Update Password was successful.";
+		}
+		else {
+			message = "Update Password was unsuccessful.";	
+		}
+		
+		return message;
+		
 	}
 
 }

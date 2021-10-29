@@ -20,6 +20,6 @@ public interface UserService {
 	User authenticate(String username, String password);
 	
 	//update password
-	boolean updatePassword(String username, String password);
+	String updatePassword(String username, String password);
 	
 }
