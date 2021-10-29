@@ -39,13 +39,13 @@ public class BookishController {
 	//	testUser = new User("test_user", "test@test.com", "password", userBooks);
 		
 		
-		userBooks.add(new Book(0, "mvmGPgAACAAJ", testUser, "Fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
-		userBooks.add(new Book(0, "ZCtfCgAAQBAJ", testUser, "another fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
-		userBooks.add(new Book(0, "JEYCDAAAQBAJ", testUser, "fake review number 3", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
-		
-		userBooks.add(new Book(0, "sJsqDwAAQBAJ", testUser, null, null, null));
-		userBooks.add(new Book(0, "hQc8zgEACAAJ", testUser, null, null, null));
-		userBooks.add(new Book(0, "mOrSAwAAQBAJ", testUser, null, null, null));
+//		userBooks.add(new Book(0, "mvmGPgAACAAJ", testUser, "Fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
+//		userBooks.add(new Book(0, "ZCtfCgAAQBAJ", testUser, "another fake review", Rating.THREE, new Timestamp(System.currentTimeMillis())));
+//		userBooks.add(new Book(0, "JEYCDAAAQBAJ", testUser, "fake review number 3", Rating.FIVE, new Timestamp(System.currentTimeMillis())));
+//		
+//		userBooks.add(new Book(0, "sJsqDwAAQBAJ", testUser, null, null, null));
+//		userBooks.add(new Book(0, "hQc8zgEACAAJ", testUser, null, null, null));
+//		userBooks.add(new Book(0, "mOrSAwAAQBAJ", testUser, null, null, null));
 	}
 	
 	//Register - post
@@ -59,19 +59,7 @@ public class BookishController {
 	//Login - post
 	@PostMapping(value = "/login")
 	public User login(@RequestBody User user, HttpSession session) {
-//		initializeFakeData();
-//		
-//		if(user.getUsername() != null && user.getPassword() != null) {
-//			if(testUser.getUsername().equals(user.getUsername()) && testUser.getPassword().equals(user.getPassword())) {
-//				session.setAttribute("username", user.getUsername());
-//			}
-//		}
-//		else {
-//			testUser = null;
-//		}
-//		
-//		
-//		return testUser;
+
 		String username = user.getUsername();
 		String password = user.getPassword();
 		
@@ -131,6 +119,9 @@ public class BookishController {
 //		if(userBooks == updateBookList) {
 //			message = "Book list updated.";
 //		}
+		if(bookService.updateBookList(user)) {
+			message = "Book list successfully updated.";
+		}
 		
 		return message;
 	}

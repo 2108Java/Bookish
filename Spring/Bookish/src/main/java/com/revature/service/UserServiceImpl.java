@@ -56,9 +56,11 @@ public class UserServiceImpl implements UserService {
 		
 		User user = userDao.selectUser(username);
 		
-		if(user.getUsername() != null && user.getPassword() != null) {
-			if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
-				authenticated = true;
+		if(user != null) {
+			if(user.getUsername() != null && user.getPassword() != null) {
+				if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+					authenticated = true;
+				}
 			}
 		}
 		
