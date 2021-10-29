@@ -32,8 +32,8 @@ public class BookishController {
 		
 		
 		read.add(new Book("mvmGPgAACAAJ", "test_user", "Fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
-		read.add(new Book("ZCtfCgAAQBAJ", "test_user", "another fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
-		read.add(new Book("JEYCDAAAQBAJ", "test_user", "fake review number 3", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
+		read.add(new Book("ZCtfCgAAQBAJ", "test_user", "another fake review", Rating.FIVE, new Timestamp(System.currentTimeMillis())));
+		read.add(new Book("JEYCDAAAQBAJ", "test_user", "fake review number 3", Rating.THREE, new Timestamp(System.currentTimeMillis())));
 		
 		toRead.add(new Book("sJsqDwAAQBAJ", "test_user", null, null, null));
 		toRead.add(new Book("hQc8zgEACAAJ", "test_user", null, null, null));
@@ -112,7 +112,7 @@ public class BookishController {
 	}
 	
 	//Update list - put
-	@PutMapping(value = "/list/read")
+	@PutMapping(value = "/list")
 	public String updateReadList(@RequestBody List<Book> updateRead) {
 		String message = "Read list not updated.";
 		
@@ -130,7 +130,7 @@ public class BookishController {
 		
 		toRead = updateToRead;
 		if(toRead == updateToRead) {
-			message = "To read list updated.";
+			message = "list updated.";
 		}
 		
 		return message;

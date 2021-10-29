@@ -34,12 +34,9 @@ public class UserServiceTest {
 		
 		userService = new UserServiceImpl(userDao, bookDao);
 	}
-	
-	@Test
-	void registerUser() {}
 			
 	@Test
-	void authenticate() {
+	void testAuthenticate() {
 		List<Book> fake1 = new ArrayList<>();
 		List<Book> fake2 = new ArrayList<>();
 		User fakeuser =  new User ("yibeltal","yib@gmail.com","pass",fake1,fake2);
@@ -53,7 +50,7 @@ public class UserServiceTest {
 	}
 		
 	@Test
-	void updatePassword() {
+	void testUpdatePassword() {
 		when(userDao.updateUser("username", "password")).thenReturn(true);
 		when(userDao.updateUser("username", "fake")).thenReturn(false);
 		when(userDao.updateUser("fake", "password")).thenReturn(false);
@@ -72,8 +69,8 @@ public class UserServiceTest {
 	}
 		
 	@Test
-	void readList() {}
+	void testReadList() {}
 	
 	@Test
-	void toReadList() {}
+	void testToReadList() {}
 }

@@ -6,7 +6,7 @@ export interface Book {
     author : string,
     description : string,
     imageLink : string,
-    dateFinished : Date,
+    dateFinished : number,
     rating : Rating,
     review : string
 }

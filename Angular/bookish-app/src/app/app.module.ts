@@ -5,14 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookService } from './services/book.service';
 import { UserService } from './services/user.service';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LandPageComponent } from './land-page/land-page.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    LandPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [BookService, UserService],
   bootstrap: [AppComponent]
