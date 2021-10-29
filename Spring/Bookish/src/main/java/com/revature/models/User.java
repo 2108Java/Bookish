@@ -33,17 +33,7 @@ public class User {
 	private String password;
 	//image
 	
-<<<<<<< HEAD
-	@OneToMany(mappedBy = "user")
-	List<Book> userBooks;
-//	
-=======
-	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Book> userBooks;
-	
->>>>>>> 1e219574783aef2f6b99413082c8e5f75bf331e2
-//	@ManyToMany
-//	List<Book> toRead;
 
 }

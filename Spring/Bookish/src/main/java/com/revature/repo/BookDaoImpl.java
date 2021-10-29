@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,37 +22,76 @@ public class BookDaoImpl implements BookDao {
 	
 	@Override
 	public boolean insertBook(Book book) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean success = true;
+		
+		try(Session session = sessionFactory.openSession()){
+			Transaction tx = session.beginTransaction();
+			
+			session.save(book);
+			
+			tx.commit();
+		}
+		catch(Exception e) {
+			success = false;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	@Override
 	public List<Book> selectBookList(User user) {
+		List<Book> bookList = null;
 		
-		String hql = "from Book where user = '" + user + "'";
-		
-		List<Book> bookList = sessionFactory.openSession().createQuery(hql, Book.class).list();
+		try(Session session = sessionFactory.openSession()){
+			String hql = "from Book where user = '" + user + "'";
+			
+			bookList = session.createQuery(hql, Book.class).list();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		return bookList;
 	}
 
 	@Override
 	public boolean insertBookList(List<Book> newBookList) {
+		boolean success = true;
 		
-		for(Book book: newBookList) {
-			sessionFactory.openSession().persist(book);
+		try(Session session = sessionFactory.openSession()){
+			Transaction tx = session.beginTransaction();
+		
+			for(Book book: newBookList) {
+				session.save(book);
+			}
+		
+			tx.commit();
+		} 
+		catch(Exception e) {
+			success = false;
+			e.printStackTrace();
 		}
-		return true;
+		return success;
 	}
 
 	@Override
 	public boolean deleteBookList(List<Book> oldBookList) {
+		boolean success = true;
 		
-		for(Book book: oldBookList) {
-			sessionFactory.openSession().delete(book);
+		try(Session session = sessionFactory.openSession()){
+			Transaction tx = session.beginTransaction();
+		
+			for(Book book: oldBookList) {
+				session.delete(book);
+			}
+		
+			tx.commit();
 		}
-		
-		return true;
+		catch(Exception e) {
+			success = false;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	

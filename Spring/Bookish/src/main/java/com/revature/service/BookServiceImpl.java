@@ -22,17 +22,17 @@ public class BookServiceImpl implements BookService{
 	@Autowired
 	private BookDao bookDao;
 
-	@Override
-	public boolean addBook(Book book) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean addBook(Book book) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
-	@Override
-	public Book getBook(String api_id, String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Book getBook(String api_id, String username) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public boolean updateBookList(User user) {

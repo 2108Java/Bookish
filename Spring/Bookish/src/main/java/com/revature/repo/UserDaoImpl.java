@@ -1,9 +1,8 @@
 package com.revature.repo;
 
-<<<<<<< HEAD
+
 import org.hibernate.Session;
-=======
->>>>>>> 1e219574783aef2f6b99413082c8e5f75bf331e2
+
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public boolean insertUser(User user) {
-<<<<<<< HEAD
 		
 		boolean check = true;
 		
@@ -40,28 +38,25 @@ public class UserDaoImpl implements UserDao {
 			check = false;
 			e.printStackTrace();
 		}
-		
-//		sessionFactory.openSession().save(user);
 		return check;
-	
-=======
-		return false;
->>>>>>> 1e219574783aef2f6b99413082c8e5f75bf331e2
 	}
 	
 	@Override
 	public User selectUser(String username) {
+		User user = null;
 		
-		User user = sessionFactory.openSession().get(User.class, username);// this fixes the EntityManagerFactory is closed error
-//		sessionFactory.close();
+		try(Session session = sessionFactory.openSession()){
+			user = session.get(User.class, username);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-//		User user = sessionFactory.getCurrentSession().get(User.class, username); // this throws No CurrentSessionContext configured
 		return user;
 	}
 
 	@Override
 	public boolean updateUser(String username, String password) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

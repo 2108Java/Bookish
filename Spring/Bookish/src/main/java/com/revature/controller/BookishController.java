@@ -115,10 +115,6 @@ public class BookishController {
 	public String updateReadList(@RequestBody User user) {
 		String message = "Book list not updated.";
 		
-//		userBooks = updateBookList;
-//		if(userBooks == updateBookList) {
-//			message = "Book list updated.";
-//		}
 		if(bookService.updateBookList(user)) {
 			message = "Book list successfully updated.";
 		}
