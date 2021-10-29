@@ -36,7 +36,7 @@ public class BookishController {
 	private static List<Book> userBooks;
 	
 	public static void initializeFakeData() {
-		testUser = new User("test_user", "test@test.com", "password", userBooks);
+	//	testUser = new User("test_user", "test@test.com", "password", userBooks);
 		
 		
 		userBooks.add(new Book(0, "mvmGPgAACAAJ", testUser, "Fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
@@ -51,15 +51,8 @@ public class BookishController {
 	//Register - post
 	@PostMapping(value = "/register")
 	public String registerUser(@RequestBody User user) {
-		String message = "";
-		
-		if(user != null) {
-			message = "Registration for " + user.getUsername() + "was successful.";
-		}
-		else {
-			message = "Registration was unsuccessful.";
-		}
-		
+		String message = " ";
+		message = userService.registerUser(user);
 		return message;
 	}
 	

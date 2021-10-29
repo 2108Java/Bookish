@@ -8,7 +8,7 @@ import com.revature.models.User;
 public interface UserService {
 
 	//register
-	User registerUser(User user);
+	String registerUser(User user);
 	
 	//encrypt password
 	String encrypt(String password);

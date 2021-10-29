@@ -27,9 +27,16 @@ public class UserServiceImpl implements UserService {
 	private BookDao bookDao;
 	
 	@Override
-	public User registerUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public String registerUser(User user) {
+		String message = "";
+		if (userDao.insertUser(user)) {
+			message = "Registration was successful.";
+		}
+		else {
+			message = "Registration was unsuccessful.";	
+		}
+		
+		return message;
 	}
 	@Override
 	public String encrypt(String password) {
