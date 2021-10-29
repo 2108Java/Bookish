@@ -37,6 +37,7 @@ public class User {
 	private String password;
 	//image
 	
+<<<<<<< HEAD
 	@OneToMany(mappedBy = "user")
 	List<Book> userBooks1;
 
@@ -50,5 +51,9 @@ public class User {
 
 //	@ManyToMany
 //	List<Book> toRead;
+=======
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	private List<Book> userBooks;
+>>>>>>> c4ae03ee539ec34e6d4ee51585a9591ea6add0b4
 
 }

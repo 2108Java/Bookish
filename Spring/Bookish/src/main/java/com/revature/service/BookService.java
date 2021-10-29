@@ -8,10 +8,10 @@ import com.revature.models.User;
 public interface BookService {
 
 	//add a new book
-	boolean addBook(Book book);
+//	boolean addBook(Book book);
 	
 	//retrieve a book
-	Book getBook(String api_id, String username);
+//	Book getBook(String api_id, String username);
 	
 	//update a book list
 	//will replace current list with updated list

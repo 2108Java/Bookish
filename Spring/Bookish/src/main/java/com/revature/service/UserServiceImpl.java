@@ -29,7 +29,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String registerUser(User user) {
 		String message = "";
+<<<<<<< HEAD
 		user.setPassword(encrypt(user.getPassword()));
+=======
+		
+		//encrypt the password before passing the user object to the dao
+		String password = user.getPassword();
+		password = encrypt(password);
+		user.setPassword(password);
+		
+>>>>>>> c4ae03ee539ec34e6d4ee51585a9591ea6add0b4
 		if (userDao.insertUser(user)) {
 			message = "Registration was successful.";
 		}
@@ -59,7 +68,11 @@ public class UserServiceImpl implements UserService {
 		
 		if(user != null) {
 			if(user.getUsername() != null && user.getPassword() != null) {
-				if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+				//decrypt the stored password before authenticating
+				String storedPassword = user.getPassword();
+				storedPassword = decrypt(storedPassword);
+				
+				if(user.getUsername().equals(username) && storedPassword.equals(password)) {
 					authenticated = true;
 				}
 			}

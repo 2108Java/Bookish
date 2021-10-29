@@ -1,6 +1,12 @@
 package com.revature.repo;
 
+<<<<<<< HEAD
 import org.hibernate.Session;
+=======
+
+import org.hibernate.Session;
+
+>>>>>>> c4ae03ee539ec34e6d4ee51585a9591ea6add0b4
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -37,24 +43,30 @@ public class UserDaoImpl implements UserDao {
 			check = false;
 			e.printStackTrace();
 		}
-		
-//		sessionFactory.openSession().save(user);
 		return check;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> c4ae03ee539ec34e6d4ee51585a9591ea6add0b4
 	}
 	
 	@Override
 	public User selectUser(String username) {
+		User user = null;
 		
-		User user = sessionFactory.openSession().get(User.class, username);// this fixes the EntityManagerFactory is closed error
-//		sessionFactory.close();
+		try(Session session = sessionFactory.openSession()){
+			user = session.get(User.class, username);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-//		User user = sessionFactory.getCurrentSession().get(User.class, username); // this throws No CurrentSessionContext configured
 		return user;
 	}
 
 	@Override
 	public boolean updateUser(String username, String password) {
+<<<<<<< HEAD
 		System.out.println("Repository");
 		boolean check = true;
 		try(Session ses = sessionFactory.openSession()){
@@ -71,6 +83,9 @@ public class UserDaoImpl implements UserDao {
 			}
 		return check;
 			
+=======
+		return false;
+>>>>>>> c4ae03ee539ec34e6d4ee51585a9591ea6add0b4
 	}
 
 }
