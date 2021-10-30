@@ -9,11 +9,11 @@
     <div class="form">
         <h2>Login</h2>
         <div class = "form-input-message">Enter username</div>
-        <input type="text" name="email" placeholder="Enter email address">
-        <div class = "form-input-message">Enter username</div>
-        <input type="text" name="password" placeholder="Enter password">
+        <input type="text" id="username" name="username" placeholder="Enter username" #username>
+        <div class = "form-input-message">Enter password</div>
+        <input type="text" id="password" name="password" placeholder="Enter password" #password>
         <div style= "margin-top: 5%">
-        <button type="button" class="btn btn-dark">Login</button><br></div>
+        <button type="button" id="login-button" class="btn btn-dark" (click)="login(username.value, password.value)">Login</button><br></div>
         <a href= "#">Create an account here</a>
     </div>
     

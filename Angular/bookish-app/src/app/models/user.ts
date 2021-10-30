@@ -5,6 +5,7 @@ export interface User {
     email : string,
     password : string,
     profileImage : string,
+    userBooks: Book[],
     readList : Book[],
     toReadList : Book[]
 }
