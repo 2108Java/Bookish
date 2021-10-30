@@ -10,20 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
+//@Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
 @Table(name = "users")
-
 public class User {
 	
 	@Id
@@ -37,23 +35,40 @@ public class User {
 	private String password;
 	//image
 	
-<<<<<<< HEAD
-	@OneToMany(mappedBy = "user")
-	List<Book> userBooks1;
-
-	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Book> userBooks;
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Book> getUserBooks() {
+		return userBooks;
+	}
+
+	public void setUserBooks(List<Book> userBooks) {
+		this.userBooks = userBooks;
+	}
 
 	
-	
-
-//	@ManyToMany
-//	List<Book> toRead;
-=======
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-	private List<Book> userBooks;
->>>>>>> c4ae03ee539ec34e6d4ee51585a9591ea6add0b4
-
 }

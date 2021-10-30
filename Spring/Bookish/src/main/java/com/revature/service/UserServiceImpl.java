@@ -29,17 +29,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String registerUser(User user) {
 		String message = "";
-<<<<<<< HEAD
+		
 		user.setPassword(encrypt(user.getPassword()));
-=======
 		
-		//encrypt the password before passing the user object to the dao
-		String password = user.getPassword();
-		password = encrypt(password);
-		user.setPassword(password);
-		
->>>>>>> c4ae03ee539ec34e6d4ee51585a9591ea6add0b4
-		if (userDao.insertUser(user)) {
+		if (userDao.save(user) != null) {
 			message = "Registration was successful.";
 		}
 		else {
@@ -64,7 +57,7 @@ public class UserServiceImpl implements UserService {
 	public User authenticate(String username, String password) {
 		boolean authenticated = false;
 		
-		User user = userDao.selectUser(username);
+		User user = userDao.findByUsername(username);
 		
 		if(user != null) {
 			if(user.getUsername() != null && user.getPassword() != null) {
@@ -87,10 +80,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public String updatePassword(String username, String password) {
-		System.out.println("Service");
 		String message="";
-		//userDao.updateUser(username,encrypt(password))
-		if (userDao.updateUser(username,encrypt(password))) {
+		
+		if (userDao.updatePassword(username,encrypt(password)) > 0) {
 			message = "Update Password was successful.";
 		}
 		else {
@@ -98,7 +90,6 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return message;
-		
 	}
 
 }

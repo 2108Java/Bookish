@@ -2,25 +2,25 @@ package com.revature.repo;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.revature.models.Book;
 import com.revature.models.User;
 
-public interface BookDao {
+@Transactional
+@Repository("bookDao")
+public interface BookDao extends JpaRepository<Book, Integer>{
 
+	
 	//insert book
-	boolean insertBook(Book book);
-	
-	//get book list
-	List<Book> selectBookList(User user); //get a users list of books
-	
 	//update book
 	//rate a book
 	//review a book
 	//finish a book
-	boolean insertBookList(List<Book> newBookList);
 	
-	boolean deleteBookList(List<Book> oldBookList);
-	
-	//List<Book> selectBook(String nameOrAuthor);//by name or author
+	//get book list
+	List<Book> findByUser(User user); //get a users list of books
 	
 }

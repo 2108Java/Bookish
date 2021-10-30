@@ -1,17 +1,27 @@
 package com.revature.repo;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.revature.models.Book;
 import com.revature.models.User;
 
-public interface UserDao {
+@Transactional
+@Repository("userDao")
+public interface UserDao extends JpaRepository<User, String>{
 
 	//insert user
-	boolean insertUser(User user);
 	
 	//get a user
-	User selectUser(String username);
+	User findByUsername(String username);
 	
 	//update password
-	boolean updateUser(String username, String password);
+	@Modifying
+	@Query("update User user set user.password = ?2 where user.username = ?1")
+	int updatePassword(String username, String password);
 	
 	
 }

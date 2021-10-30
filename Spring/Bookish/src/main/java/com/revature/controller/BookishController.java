@@ -29,25 +29,6 @@ public class BookishController {
 	@Autowired
 	BookService bookService;
 	
-	/**
-	 * create fake list for testing endpoints
-	 */
-	private static User testUser;
-	private static List<Book> userBooks;
-	
-	public static void initializeFakeData() {
-	//	testUser = new User("test_user", "test@test.com", "password", userBooks);
-		
-		
-//		userBooks.add(new Book(0, "mvmGPgAACAAJ", testUser, "Fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
-//		userBooks.add(new Book(0, "ZCtfCgAAQBAJ", testUser, "another fake review", Rating.THREE, new Timestamp(System.currentTimeMillis())));
-//		userBooks.add(new Book(0, "JEYCDAAAQBAJ", testUser, "fake review number 3", Rating.FIVE, new Timestamp(System.currentTimeMillis())));
-//		
-//		userBooks.add(new Book(0, "sJsqDwAAQBAJ", testUser, null, null, null));
-//		userBooks.add(new Book(0, "hQc8zgEACAAJ", testUser, null, null, null));
-//		userBooks.add(new Book(0, "mOrSAwAAQBAJ", testUser, null, null, null));
-	}
-	
 	//Register - post
 	@PostMapping(value = "/register")
 	public String registerUser(@RequestBody User user) {
@@ -99,17 +80,9 @@ public class BookishController {
 	
 	//Update password - put
 	@PutMapping(value = "/password")
-	public String updatePassword(@RequestBody String password,HttpSession session) {
-		System.out.println("controller");
+	public String updatePassword(@RequestBody String password, HttpSession session) {
 		String username1 = (String) session.getAttribute("username");
 		String message = userService.updatePassword(username1,password);
-		
-//		String message = "Password not updated.";
-		
-//		testUser.setPassword(password1);
-//		if(testUser.getPassword().equals(password1)) {
-//			message = "Password updated successfully.";
-//		}
 		
 		return message;
 	}

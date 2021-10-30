@@ -22,31 +22,47 @@ public class BookServiceImpl implements BookService{
 	@Autowired
 	private BookDao bookDao;
 
-//	@Override
-//	public boolean addBook(Book book) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-
-//	@Override
-//	public Book getBook(String api_id, String username) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
 	public boolean updateBookList(User user) {
 		boolean success = false;
 		
-		List<Book> oldBookList = bookDao.selectBookList(user);
+		List<Book> oldBookList = bookDao.findByUser(user);
 		List<Book> newBookList = user.getUserBooks();
 		
-		if(bookDao.deleteBookList(oldBookList)) {
-			if(bookDao.insertBookList(newBookList)) {
+		//ensure the user/username is not null before processing the list
+		for(Book book: newBookList) {
+			book.setUser(user);
+		}
+		
+		System.out.println(newBookList);
+		//check if the user already has books stored
+		if(oldBookList == null) {
+			//check if the user is going to store any books
+			if(newBookList != null) {
+				for(Book book: newBookList) {
+					bookDao.save(book);
+				}
+				success = true;
+			}
+			else if(newBookList == null){
 				success = true;
 			}
 		}
-		
+		//ensure currently stored books are deleted
+		else if(oldBookList != null) {
+			bookDao.deleteAllInBatch(oldBookList);
+			//check if the user is going to store any books
+			if(newBookList != null) {
+				for(Book book: newBookList) {
+					bookDao.save(book);
+				}
+				success = true;
+			}
+			else if(newBookList == null) {
+				success = true;
+			}
+		}
+				
 		return success;
 	}
 

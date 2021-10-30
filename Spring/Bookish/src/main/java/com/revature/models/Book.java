@@ -16,13 +16,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
 
-@Getter
-@Setter
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -57,6 +53,54 @@ public class Book {
 	public String toString() {
 		return "Book [bookId=" + bookId + ", apiId=" + apiId + ", user=" + user.getUsername() + ", review=" + review + ", rating="
 				+ rating + ", dateFinished=" + dateFinished + "]";
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getApiId() {
+		return apiId;
+	}
+
+	public void setApiId(String apiId) {
+		this.apiId = apiId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+
+	public Timestamp getDateFinished() {
+		return dateFinished;
+	}
+
+	public void setDateFinished(Timestamp dateFinished) {
+		this.dateFinished = dateFinished;
 	}
 	
 	
