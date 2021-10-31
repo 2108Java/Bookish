@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Book;
+import com.revature.models.Message;
 import com.revature.models.Rating;
 import com.revature.models.User;
 import com.revature.service.BookService;
@@ -31,9 +32,9 @@ public class BookishController {
 	
 	//Register - post
 	@PostMapping(value = "/register")
-	public String registerUser(@RequestBody User user) {
-		String message = " ";
-		message = userService.registerUser(user);
+	public Message registerUser(@RequestBody User user) {
+		
+		Message message = userService.registerUser(user);
 		return message;
 	}
 	
@@ -67,12 +68,12 @@ public class BookishController {
 	
 	//Logout - get
 	@GetMapping(value = "/logout")
-	public String logout(HttpSession session) {
-		String message = "Logout failed.";
+	public Message logout(HttpSession session) {
+		Message message = new Message("Logout failed.");
 		
 		session.setAttribute("username", null);
 		if(session.getAttribute("username") == null) {
-			message = "Logout succeeded.";
+			message.setMessage("Logout succeeded.");
 		}
 		
 		return message;
@@ -80,20 +81,22 @@ public class BookishController {
 	
 	//Update password - put
 	@PutMapping(value = "/password")
-	public String updatePassword(@RequestBody String password, HttpSession session) {
-		String username1 = (String) session.getAttribute("username");
-		String message = userService.updatePassword(username1,password);
+	public Message updatePassword(@RequestBody User user) {
+		String username = user.getUsername();
+		String password = user.getPassword();
+		
+		Message message = userService.updatePassword(username,password);
 		
 		return message;
 	}
 	
 	//Update list - put
 	@PutMapping(value = "/list")
-	public String updateReadList(@RequestBody User user) {
-		String message = "Book list not updated.";
+	public Message updateReadList(@RequestBody User user) {
+		Message message = new Message("Book list not updated.");
 		
 		if(bookService.updateBookList(user)) {
-			message = "Book list successfully updated.";
+			message.setMessage("Book list successfully updated.");
 		}
 		
 		return message;

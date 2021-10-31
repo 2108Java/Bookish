@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Book;
+import com.revature.models.Message;
 import com.revature.models.User;
 import com.revature.repo.BookDao;
 import com.revature.repo.UserDao;
@@ -27,16 +28,16 @@ public class UserServiceImpl implements UserService {
 	private BookDao bookDao;
 	
 	@Override
-	public String registerUser(User user) {
-		String message = "";
+	public Message registerUser(User user) {
+		Message message = new Message();
 		
 		user.setPassword(encrypt(user.getPassword()));
 		
 		if (userDao.save(user) != null) {
-			message = "Registration was successful.";
+			message.setMessage("Registration was successful.");
 		}
 		else {
-			message = "Registration was unsuccessful.";	
+			message.setMessage("Registration was unsuccessful.");	
 		}
 		
 		return message;
@@ -79,14 +80,14 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public String updatePassword(String username, String password) {
-		String message="";
+	public Message updatePassword(String username, String password) {
+		Message message= new Message();
 		
 		if (userDao.updatePassword(username,encrypt(password)) > 0) {
-			message = "Update Password was successful.";
+			message.setMessage("Update Password was successful.");
 		}
 		else {
-			message = "Update Password was unsuccessful.";	
+			message.setMessage("Update Password was unsuccessful.");	
 		}
 		
 		return message;

@@ -3,12 +3,13 @@ package com.revature.service;
 import java.util.List;
 
 import com.revature.models.Book;
+import com.revature.models.Message;
 import com.revature.models.User;
 
 public interface UserService {
 
 	//register
-	String registerUser(User user);
+	Message registerUser(User user);
 	
 	//encrypt password
 	String encrypt(String password);
@@ -20,6 +21,6 @@ public interface UserService {
 	User authenticate(String username, String password);
 	
 	//update password
-	String updatePassword(String username, String password);
+	Message updatePassword(String username, String password);
 	
 }
