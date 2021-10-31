@@ -13,6 +13,7 @@ import { CurrentListComponent } from './current-list/current-list.component';
 import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     ReadListComponent,
     ToReadListComponent,
     CurrentListComponent,
-    ProfileMenuComponent
+    ProfileMenuComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
