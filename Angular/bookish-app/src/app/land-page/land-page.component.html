@@ -1,53 +1,70 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img src="/assets/book-icon.png" class="logo">
-    <a class="navbar-brand" href="#">Bookish</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class= "nav-right">
-        <!--<input type="text" class="search-box" placeholder="Search" name="query">-->
-        <div class="dropdown">
-           <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Search by
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Title</a>
-              <a class="dropdown-item" href="#">Author</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>-->
-            <img src="/assets/profile-icon.jpg" class="profile">
-          </div>
-        </div>
-</nav>
-
-<div class="user-options">
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">View read list</a>
-        <a href="#" class="list-group-item list-group-item-action">View to-read list</a>
-        <a href="#" class="list-group-item list-group-item-action">View current book</a>
-    </div>
+<div class="nav-bar-container" style="position: sticky;">
+  <nav class="nav-bar" style="background-color: #e3f2fd; ">
+      <img src="/assets/book-icon.png" class="logo">
+      <a class="navbar-brand" href="#">Bookish</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--<div class= "nav-right">-->
+          <!--<input type="text" class="search-box" placeholder="Search" name="query">-->
+          <!--<div class="dropdown">-->
+             <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Search by
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Title</a>
+                <a class="dropdown-item" href="#">Author</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>-->
+              <!--<img src="/assets/profile-icon.jpg" class="profile">
+              <div class="user-profile-name" style="padding-right: 10px;">
+                  <p>Test user</p>{{username}}
+              </div>
+      </div>
+              <div class="profile-menu"></div>-->
+              
+           
+                  
+  </nav>
+  
   </div>
 
-<form class="search-book" style="width: 80%">
-    <h2>Look up books</h2>
+  <div class = "container">
+    <div class="side-bar" style="top: 100px">
+    <div class = links>
+      <a routerLink="/land-page" routerLinkActive="active" href="a">Discover new books</a>
+      <a routerLink="/read-list" routerLinkActive="active" href="a">View read list</a>
+      <a routerLink="/to-read-list" routerLinkActive="active" href="a">View to-read list</a>
+      <a routerLink="/current-list" routerLinkActive="active" href="a">View currently reading list</a>
+      <a routerLink="/update-pass" routerLinkActive="active" href="a">Update password</a>
+      <a routerLink="/logout" routerLinkActive="active" href="a">Logout</a>
+      </div>
+    </div>
+
+    <div class="main-content" style="top: 50px">
+          
+      <h3 style="padding-top: 8%;">Look up books</h3>
+      <div class="card-container" style="padding-top: 2%;">
+<form class="search-book" style="width: 80%; padding-top: 70px; padding-left: 200px;">
+    
     <div class="form-group row" style="padding-top: 10px;">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Enter input</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Type here" style="width: 50%">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="Type here" style="width: 50%; margin-left:-22px">
       </div>
     </div>
-    <fieldset class="form-group" style="padding-top: 8px">
+    <fieldset class="form-group" style="padding-top: 10px">
         <div class="row">
           <legend class="col-form-label col-sm-2 pt-0">Select by</legend>
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+              <input class="form-check-input" type="radio" name="title" id="gridRadios1" value="title" checked style="margin-top: 5px;">
               <label class="form-check-label" for="gridRadios1">
                 Title
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+              <input class="form-check-input" type="radio" name="author" id="gridRadios2" value="author" style="margin-top: 5px;">
               <label class="form-check-label" for="gridRadios2">
                 Author
               </label>
@@ -55,4 +72,7 @@
     </div>
         </div>
     </fieldset>
+    <button type="button" class="btn btn-dark" id="update-pass-sub" style="width:15%; margin-top: 12px;">Submit</button>
 </form>
+      </div>
+    </div>

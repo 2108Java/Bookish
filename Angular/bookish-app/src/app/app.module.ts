@@ -15,6 +15,8 @@ import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { UpdatePassComponent } from './update-pass/update-pass.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -27,7 +29,9 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     ToReadListComponent,
     CurrentListComponent,
     ProfileMenuComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    UpdatePassComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

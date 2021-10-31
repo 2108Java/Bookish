@@ -65,7 +65,7 @@
     /*background: #cbdffa;*/
     flex-basis: 25%;
     position: sticky;
-    top: 70px;
+    top: 20px;
     align-self: flex-start;
     
 }
@@ -94,6 +94,7 @@ nav{
     color: #626262;
     width: fit-content;
     padding-left: 10%;
+    margin-top: 70px;
 }
 
 .nav-bar a{
