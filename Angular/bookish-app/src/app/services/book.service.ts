@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Book } from '../models/book';
 import { Rating } from '../models/rating';
 import { User } from '../models/user';
@@ -13,34 +14,34 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  getBookFromExternalAPIById(id: number): Book {
-    let book!: Book;
+  getBookFromExternalAPIById(id: number): Observable<any> {
     let addonUrl: string = "/" + id;
+    let fullUrl: string = this.baseUrl + addonUrl;
 
-    return book;
+    return this.http.get<Book>(fullUrl);
 
   }
 
-  getBooksFromExternalAPIByAuthor(author: string): Book[] {
-    let bookArray!: Book[];
-    let addonUrl: string = "?q=inauthor:" + author + "&langRestrict=en&printType=books";
+  getBooksFromExternalAPIByAuthor(author: string): Observable<any[]> {
+    let addonUrl: string = "?q=inauthor:" + author + "&langRestrict=en";
+    let fullUrl: string = this.baseUrl + addonUrl;
 
-    return bookArray;
+    return this.http.get<Book[]>(fullUrl);
   }
 
-  getBooksFromExternalAPIByTitle(title: string): Book[] {
-    let bookArray!: Book[];
-    let addonUrl: string = "?q=intitle:" + title + "&langRestrict=en&printType=books";
+  getBooksFromExternalAPIByTitle(title: string): Observable<Book[]> {
+    let addonUrl: string = "?q=intitle:" + title + "&langRestrict=en";
+    let fullUrl: string = this.baseUrl + addonUrl;
 
-    return bookArray;
+    return this.http.get<any[]>(fullUrl);
   }
 
   finishBook(user: User, book: Book, review: string, rating: Rating): User {
     book.review = review;
     book.rating = rating;
     book.dateFinished = Date.now();
-    this.removeFromWantToReadList(user ,book);
-    this.addToHaveReadList(user, book);
+    user = this.removeFromWantToReadList(user ,book);
+    user = this.addToHaveReadList(user, book);
 
     return user;
   }
@@ -49,18 +50,22 @@ export class BookService {
     user.readList = [];
     user.toReadList = [];
 
-    for(let book of user.userBooks) {
-      if(book.dateFinished != null) {
-        user.readList.push(book);
-      } else {
-        user.toReadList.push(book);
+    if(user.userBooks != undefined) {
+      for(let book of user.userBooks) {
+        if(book.dateFinished != null) {
+          user.readList.push(book);
+        } else {
+          user.toReadList.push(book);
+        }
       }
     }
+    
 
     return user;
   }
 
   combineList(user: User): User {
+
     user.userBooks = user.readList.concat(user.toReadList);
 
     return user;
@@ -76,7 +81,7 @@ export class BookService {
     let bookPosition: number = -1;
 
     for(let b of user.toReadList){
-      if(b.id == book.id){
+      if(b.apiId == book.apiId){
 
         bookPosition = user.toReadList.indexOf(b);
 

@@ -1,7 +1,6 @@
-<!--<app-home-page></app-home-page>
-<app-land-page></app-land-page>-->
-<app-read-list></app-read-list>
-
-<app-home-page></app-home-page>
+<app-home-page (onLogIn)="logIn()" *ngIf = '!isLoggedIn'></app-home-page>
 <!--<app-land-page></app-land-page>-->
-
+<!--<app-current-list></app-current-list>-->
+<!--<app-read-list></app-read-list>-->
+<!--<app-to-read-list></app-to-read-list>-->
+<router-outlet *ngIf = 'isLoggedIn'></router-outlet>
