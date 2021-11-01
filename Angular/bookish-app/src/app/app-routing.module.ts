@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HomePageComponent } from './home-page/home-page.component';
 import { ReadListComponent } from './read-list/read-list.component';
 import { ToReadListComponent } from './to-read-list/to-read-list.component';
 import { CurrentListComponent } from './current-list/current-list.component';
@@ -14,6 +15,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { SessionGuard } from './session.guard';
 
 const routes: Routes = [
+{ path: 'login', component: HomePageComponent },
 { path: 'register', component: RegisterFormComponent },
 { path: 'land-page', component: LandPageComponent, canActivate: [SessionGuard]  },
 { path: 'read-list', component: ReadListComponent},
