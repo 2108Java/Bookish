@@ -1,7 +1,7 @@
 import { Rating } from "./rating";
 
 export interface Book {
-    apiId : number,
+    apiId : string,
     title : string,
     author : string,
     description : string,
