@@ -43,7 +43,6 @@
         <a routerLink="/land-page" routerLinkActive="active" href="a">Discover new books</a>
         <a routerLink="/read-list" routerLinkActive="active" href="a">View read list</a>
         <a routerLink="/to-read-list" routerLinkActive="active" href="a">View to-read list</a>
-        <a routerLink="/current-list" routerLinkActive="active" href="a">View currently reading list</a>
         <a routerLink="/update-pass" routerLinkActive="active" href="a">Update password</a>
         <a routerLink="/logout" routerLinkActive="active" href="a">Logout</a>
         </div>
@@ -53,14 +52,12 @@
           <h3 style="padding-top: 8%;">Your read list</h3>
           <div class="card-container" style="padding-top: 2%;"><!--*ngFor to be included in this statement-->
        <!--<ul>-->
-     <!--<li>--><div class="card" style="width: 18rem; position:unset;">
+     <!--<li>--><div class="card" style="width: 18rem; position:unset;" *ngFor = 'let book of bookList'>
         <img class="card-img-top" src="assets/book-back.jpg" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Title: </h5>
-          <h6 class="card-title">Subtitle: </h6>
-          <h6 class="card-title">Author: </h6>
-         <h6 class="card-title">Description:</h6>
-         <!--<p class="card-text">{{desc}}</p>-->
+          <h5 class="card-title">Title: {{book.title}}</h5>
+          <h6 class="card-title">Date finished: {{book.date_finished}}</h6>
+          <!--<p class="card-text">{{desc}}</p>-->
           <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
         </div>
       </div> <!--</li>-->

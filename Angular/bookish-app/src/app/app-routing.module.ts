@@ -17,7 +17,7 @@ import { SessionGuard } from './session.guard';
 const routes: Routes = [
 { path: 'login', component: HomePageComponent },
 { path: 'register', component: RegisterFormComponent },
-{ path: 'land-page', component: LandPageComponent, canActivate: [SessionGuard]  },
+{ path: 'land-page', component: LandPageComponent },
 { path: 'read-list', component: ReadListComponent},
 { path: 'to-read-list', component: ToReadListComponent},
 { path: 'current-list', component: CurrentListComponent},

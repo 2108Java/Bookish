@@ -32,23 +32,23 @@
 
 
   <div class = "container">
-    <div class="side-bar" style="top: 100px">
-    <div class = links>
-      <a routerLink="/land-page" routerLinkActive="active" href="a">Discover new books</a>
-      <a routerLink="/read-list" routerLinkActive="active" href="a">View read list</a>
-      <a routerLink="/to-read-list" routerLinkActive="active" href="a">View to-read list</a>
-      <a routerLink="/update-pass" routerLinkActive="active" href="a">Update password</a>
-      <a routerLink="/logout" routerLinkActive="active" href="a">Logout</a>
+    <div class="side-bar">
+      <div class = links>
+        <a routerLink="/land-page" routerLinkActive="active" href="a">Discover new books</a>
+        <a routerLink="/read-list" routerLinkActive="active" href="a">View read list</a>
+        <a routerLink="/to-read-list" routerLinkActive="active" href="a">View to-read list</a>
+        <a routerLink="/update-pass" routerLinkActive="active" href="a">Update password</a>
+        <a routerLink="/logout" routerLinkActive="active" href="a">Logout</a>
+        </div>
       </div>
-    </div>
 
-    <div class="main-content" style="top: 50px">
+    <div class="main-content">
           
       <h3 style="padding-top: 8%;">Look up books</h3>
       <div class="card-container" style="padding-top: 2%;">
 <form class="search-book" style="width: 80%; padding-top: 70px; padding-left: 200px;">
     
-    <div class="form-group row" style="padding-top: 10px;">
+    <div class="form-group row" style="padding-top: 10px; padding-left: 15px;">
       <label for="inputSearch" class="col-sm-2 col-form-label">Enter input</label>
       <div class="col-sm-10">
 
@@ -56,12 +56,12 @@
         <input type="text" class="form-control" id="inputSearch" placeholder="Type here" style="width: 50%" #searchInput>
 
       </div>
-    </div>
+    
     <fieldset class="form-group" style="padding-top: 10px">
         <div class="row">
 
-          <button id="submitTitle" class="btn btn-dark" name="submitSearchTitle" style="width: 50%; margin-bottom: 6px;" type="submit" (click)="submitSearchByTitle(searchInput.value)">Search The Title</button>
-          <button id="submitAuthor" class="btn btn-dark" name="submitSearchAuthor" type="submit" (click)="submitSearchByAuthor(searchInput.value)">Search The Author</button>
+          <button id="submitTitle" class="btn btn-dark" name="submitSearchTitle" style="width: 15%; margin-bottom: 6px; margin-left: 165px;" type="submit" (click)="submitSearchByTitle(searchInput.value)">Search The Title</button>
+          <button id="submitAuthor" class="btn btn-dark" name="submitSearchAuthor" style="width: 15%; margin-bottom: 6px; margin-left: 165px;" type="submit" (click)="submitSearchByAuthor(searchInput.value)">Search The Author</button>
 
           <!-- <legend class="col-form-label col-sm-2 pt-0">Select by</legend>
           <div class="col-sm-10">
@@ -84,14 +84,20 @@
                 Author
               </label> -->
             </div>
-            <div class="card-container" style="padding-top: 2%;" *ngIf="searchList.length != 0"><!--Better for the *ngIf to be here since the card itself is what's going to be repeated-->
-              <div class="card" style="width: 18rem; position:unset;" *ngFor = 'let book of searchList'><!--*ngFor to be included in this statement-->
-               <img class="card-img-top" [src]="book.image" alt="book cover image">
+    </fieldset>
+          </div>
+          
+</form>
+
+            <div class="card-container" style="padding-top: 2%; margin-top: 100px;" *ngIf="searchList.length != 0"><!--Better for the *ngIf to be here since the card itself is what's going to be repeated-->
+              <div class="card" style="width: 50rem; position:unset; margin-bottom: 10px;" *ngFor = 'let book of searchList'><!--*ngFor to be included in this statement-->
+               <img class="card-img-top" [src]="book.image" alt="book cover image" style="width: 25%; height: 25%">
                <div class="card-body">
                  <h5 class="card-title">Title: {{book.title}}</h5>
                  <!-- <h6 class="card-title">Subtitle: </h6> --> <!-- We don't need a subtitle. That's going to be put into the title.-->
                  <h6 class="card-title">Author: {{book.author}}</h6>
                 <h6 class="card-title">Description: {{book.description}}</h6>
+                <button id="submitToList" class="btn btn-dark" name="submitToList" style="width: 15%; margin-bottom: 6px;" type="submit" (click)="submitSearchByTitle(searchInput.value)">Add to to-read list</button>
                 <!--<p class="card-text">{{desc}}</p>-->
                  <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                </div>
@@ -99,13 +105,12 @@
                  </div>
     <!-- </div> -->
         <!-- </div> -->
-    </fieldset>
+    
 
     <!--<button type="button" class="btn btn-dark" id="update-pass-sub" style="width:15%; margin-top: 12px;">Submit</button>-->
 
     <!-- <button type="button" class="btn btn-dark" id="update-pass-sub" style="width:15%; margin-top: 12px;">Submit</button> -->
 
-</form>
       </div>
     </div>
     </div>
