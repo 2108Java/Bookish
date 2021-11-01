@@ -8,7 +8,7 @@ import { UpdatePassComponent } from './update-pass/update-pass.component';
 import { LogoutComponent } from './logout/logout.component';
 import { LandPageComponent } from './land-page/land-page.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
-import { LandPageComponent } from './land-page/land-page.component';
+
 import { SessionGuard } from './session.guard';
 
 const routes: Routes = [
