@@ -22,7 +22,7 @@ import com.revature.service.BookService;
 import com.revature.service.UserService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://23.108.92.207:4200"}, allowCredentials = "true")
 @RequestMapping("/api")
 public class BookishController {
 
@@ -58,8 +58,8 @@ public class BookishController {
 	
 	//Validate - get
 	@GetMapping(value = "/session")
-	public boolean checkSession(HttpSession session) {
-		boolean activeSession = false;
+	public Boolean checkSession(HttpSession session) {
+		Boolean activeSession = false;
 		
 		if(session.getAttribute("username") != null) {
 			activeSession = true;
