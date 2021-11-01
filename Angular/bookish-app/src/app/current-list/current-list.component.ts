@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../models/book';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-current-list',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentListComponent implements OnInit {
 
-  constructor() { }
+  currentUser!: User;
+  bookList: Book[] = [];
+
+
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.userService.CurrentUser;
+    this.bookList = this.currentUser.readList;
   }
 
 }

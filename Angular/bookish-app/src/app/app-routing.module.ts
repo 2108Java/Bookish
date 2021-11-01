@@ -9,17 +9,18 @@ import { LogoutComponent } from './logout/logout.component';
 import { LandPageComponent } from './land-page/land-page.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 
+
+
 import { SessionGuard } from './session.guard';
 
 const routes: Routes = [
 { path: 'register', component: RegisterFormComponent },
-{ path: 'land-page', component: LandPageComponent },
-{ path: 'read-list', component: ReadListComponent },
-{ path: 'to-read-list', component: ToReadListComponent },
-{ path: 'current-list', component: CurrentListComponent },
-{ path: 'update-pass', component: UpdatePassComponent },
-{ path: 'logout', component: LogoutComponent },
-{ path: 'dashboard', component: LandPageComponent, canActivate: [SessionGuard] }];
+{ path: 'land-page', component: LandPageComponent, canActivate: [SessionGuard]  },
+{ path: 'read-list', component: ReadListComponent},
+{ path: 'to-read-list', component: ToReadListComponent},
+{ path: 'current-list', component: CurrentListComponent},
+{ path: 'update-pass', component: UpdatePassComponent},
+{ path: 'logout', component: LogoutComponent }];
 
 
 
