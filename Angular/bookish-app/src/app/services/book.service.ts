@@ -14,7 +14,7 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  getBookFromExternalAPIById(id: number): Observable<any> {
+  getBookFromExternalAPIById(id: string): Observable<any> {
     let addonUrl: string = "/" + id;
     let fullUrl: string = this.baseUrl + addonUrl;
 
@@ -22,14 +22,14 @@ export class BookService {
 
   }
 
-  getBooksFromExternalAPIByAuthor(author: string): Observable<any[]> {
+  getBooksFromExternalAPIByAuthor(author: string): Observable<any> {
     let addonUrl: string = "?q=inauthor:" + author + "&langRestrict=en";
     let fullUrl: string = this.baseUrl + addonUrl;
 
     return this.http.get<any[]>(fullUrl);
   }
 
-  getBooksFromExternalAPIByTitle(title: string): Observable<any[]> {
+  getBooksFromExternalAPIByTitle(title: string): Observable<any> {
     let addonUrl: string = "?q=intitle:" + title + "&langRestrict=en";
     let fullUrl: string = this.baseUrl + addonUrl;
 
