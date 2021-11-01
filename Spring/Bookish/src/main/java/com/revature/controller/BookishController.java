@@ -22,7 +22,7 @@ import com.revature.service.BookService;
 import com.revature.service.UserService;
 
 @RestController
-@CrossOrigin(origins = {"http://23.108.92.207:4200"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://23.108.92.207:4200", "http://bookish-angular.s3-website.us-east-2.amazonaws.com/"}, allowCredentials = "true")
 @RequestMapping("/api")
 public class BookishController {
 
