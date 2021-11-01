@@ -18,7 +18,7 @@ export class BookService {
     let addonUrl: string = "/" + id;
     let fullUrl: string = this.baseUrl + addonUrl;
 
-    return this.http.get<Book>(fullUrl);
+    return this.http.get<any>(fullUrl);
 
   }
 
@@ -26,10 +26,10 @@ export class BookService {
     let addonUrl: string = "?q=inauthor:" + author + "&langRestrict=en";
     let fullUrl: string = this.baseUrl + addonUrl;
 
-    return this.http.get<Book[]>(fullUrl);
+    return this.http.get<any[]>(fullUrl);
   }
 
-  getBooksFromExternalAPIByTitle(title: string): Observable<Book[]> {
+  getBooksFromExternalAPIByTitle(title: string): Observable<any[]> {
     let addonUrl: string = "?q=intitle:" + title + "&langRestrict=en";
     let fullUrl: string = this.baseUrl + addonUrl;
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import { Message } from '../models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { User } from '../models/user';
 export class UserService {
 
   currentUser!: User;
+  registeredUser = {username: "", email: "", password: ""};
   baseUrl: string = "http://localhost:8000/api";
   httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -41,39 +43,45 @@ export class UserService {
 
   }
 
-  changePassword(password: string): void {
+  changePassword(newPassword: string): Observable<HttpResponse<Message>> {
     let addonUrl: string = "/password";
     let oldPassword: string | undefined = "";
+    let fullUrl: string = this.baseUrl + addonUrl;
 
     oldPassword = this.currentUser.password;
-    this.currentUser.password = password;
+    this.currentUser.password = newPassword;
 
+    return this.http.put<Message>(fullUrl, this.currentUser, this.httpOptions);
   }
 
-  registerUser(username: string, email: string): Observable<HttpResponse<string>> {
+  registerUser(username: string, email: string, password: string): Observable<HttpResponse<Message>> {
     let addonUrl: string = "/register";
     let fullUrl: string = this.baseUrl + addonUrl;
-    this.currentUser.username = username;
-    this.currentUser.email = email;
+    this.registeredUser.username = username;
+    this.registeredUser.password = password;
+    this.registeredUser.email = email;
     
-    return this.http.post<string>(fullUrl, this.currentUser, this.httpOptions);
+    return this.http.post<Message>(fullUrl, this.registeredUser, this.httpOptions);
   }
 
-  logout(): Observable<string> {
+  logout(): Observable<Message> {
     let addonUrl: string = "/logout";
     let fullUrl: string = this.baseUrl + addonUrl;
 
-    return this.http.get<string>(fullUrl,{withCredentials: true});
+    return this.http.get<Message>(fullUrl,{withCredentials: true});
   }
 
-  updateList(): void {
+  updateList(): Observable<HttpResponse<Message>> {
     let addonUrl: string = "/list";
     let fullUrl: string = this.baseUrl + addonUrl;
+
+    return this.http.put<Message>(fullUrl, this.currentUser, this.httpOptions);
   }
 
-  checkSession(): boolean {
+  checkSession(): Observable<boolean> {
     let addonUrl: string = "/session";
     let fullUrl: string = this.baseUrl + addonUrl;
-    return true;
+
+    return this.http.get<boolean>(fullUrl,{withCredentials: true});
   }
 }

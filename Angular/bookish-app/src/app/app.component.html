@@ -10,9 +10,9 @@
 
 <!--<app-update-pass></app-update-pass>-->
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 
-<app-home-page (onLogIn)="logIn()" *ngIf = '!isLoggedIn'></app-home-page>
+<app-home-page (onLogIn)="logIn()" (onSwitchToRegister)="loginOrRegister($event)" *ngIf = '!isLoggedIn && isTryingToLogIn'></app-home-page>
 <!--<app-land-page></app-land-page>-->
 <!--<app-current-list></app-current-list>-->
 <!--<app-read-list></app-read-list>-->
@@ -22,4 +22,5 @@
 <!--<app-read-list></app-read-list>-->
 <!--<app-profile-menu></app-profile-menu>-->
 <!--<app-register-form></app-register-form>-->
+<app-register-form (onSwitchToLogin)="loginOrRegister($event)" *ngIf = '!isLoggedIn && !isTryingToLogIn'></app-register-form>
 

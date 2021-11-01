@@ -13,17 +13,9 @@ export class HomePageComponent implements OnInit {
 
   user!: User;
 
-  @Output()onLogIn = new EventEmitter<boolean>();
+  @Output() onLogIn = new EventEmitter();
 
-  registerUser(username: string, email: string): void {
-    this.userService.registerUser(username, email).subscribe(
-      response => { 
-
-        console.log(response);
-        
-      }
-    );
-  }
+  @Output() onSwitchToRegister = new EventEmitter();
 
   login(username: string, password: string): void {
     this.userService.login(username, password).subscribe(
@@ -38,13 +30,17 @@ export class HomePageComponent implements OnInit {
 
         this.onLogIn.emit(true);
 
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/land-page']);
         
       }
     );
   }
 
-  constructor(private bookService: BookService, private userService: UserService, private router: Router) { }
+  switchToRegister(): void {
+    this.onSwitchToRegister.emit(false);
+  }
+
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.user = {username: "", password: "", email: "", profileImage:"", userBooks: [], readList: [], toReadList: []};
