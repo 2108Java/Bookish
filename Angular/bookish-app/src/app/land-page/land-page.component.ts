@@ -35,8 +35,14 @@ export class LandPageComponent implements OnInit {
               book.title += ": " + data.volumeInfo.subtitle;
             }
             book.description = data.volumeInfo.description;
-            book.image = data.volumeInfo.imageLinks.thumbnail;
-            
+            if(data.volumeInfo.imageLinks != null){
+              if(data.volumeInfo.imageLinks.thumbnail != null){
+                book.image = data.volumeInfo.imageLinks.thumbnail;
+              }
+              else if(data.volumeInfo.imageLinks.smallThumbnail != null) {
+                book.image = data.volumeInfo.imageLinks.smallThumbnail;
+              }
+            }
           }
         );
       }
@@ -44,7 +50,7 @@ export class LandPageComponent implements OnInit {
    }
 
    submitSearchByAuthor(searchTerm: string) {
-    
+    this.searchList = [];
     this.bookService.getBooksFromExternalAPIByAuthor(searchTerm).subscribe(
       data => { 
 
@@ -57,7 +63,14 @@ export class LandPageComponent implements OnInit {
             book.title += ": " + i.volumeInfo.subtitle;
           }
           book.description = i.volumeInfo.description;
-          book.image = i.volumeInfo.imageLinks.thumbnail;
+          if(i.volumeInfo.imageLinks != null){
+            if(i.volumeInfo.imageLinks.thumbnail != null){
+              book.image = i.volumeInfo.imageLinks.thumbnail;
+            }
+            else if(i.volumeInfo.imageLinks.smallThumbnail != null) {
+              book.image = i.volumeInfo.imageLinks.smallThumbnail;
+            }
+          }
 
           this.searchList.push(book);
         }
@@ -66,8 +79,11 @@ export class LandPageComponent implements OnInit {
    }
 
    submitSearchByTitle(searchTerm: string) {
-    this.bookService.getBooksFromExternalAPIByTitle(searchTerm).subscribe(
+      this.searchList = [];
+      this.bookService.getBooksFromExternalAPIByTitle(searchTerm).subscribe(
       data => { 
+
+        console.log(data);
 
         for(let i of data.items) {
           let book: Book = {apiId : "", title : "", author : "", description : "", image : "", dateFinished : 0, rating : Rating.ZERO, review : ""};
@@ -78,10 +94,18 @@ export class LandPageComponent implements OnInit {
             book.title += ": " + i.volumeInfo.subtitle;
           }
           book.description = i.volumeInfo.description;
-          book.image = i.volumeInfo.imageLinks.thumbnail;
+          if(i.volumeInfo.imageLinks != null){
+            if(i.volumeInfo.imageLinks.thumbnail != null){
+              book.image = i.volumeInfo.imageLinks.thumbnail;
+            }
+            else if(i.volumeInfo.imageLinks.smallThumbnail != null) {
+              book.image = i.volumeInfo.imageLinks.smallThumbnail;
+            }
+          }
 
           this.searchList.push(book);
         }
+        console.log(this.searchList);
       }
     );
   }
@@ -98,8 +122,16 @@ export class LandPageComponent implements OnInit {
           book.title += ": " + data.volumeInfo.subtitle;
         }
         book.description = data.volumeInfo.description;
-        book.image = data.volumeInfo.imageLinks.thumbnail;
+        if(data.volumeInfo.imageLinks != null){
+          if(data.volumeInfo.imageLinks.thumbnail != null){
+            book.image = data.volumeInfo.imageLinks.thumbnail;
+          }
+          else if(data.volumeInfo.imageLinks.smallThumbnail != null) {
+            book.image = data.volumeInfo.imageLinks.smallThumbnail;
+          }
+        }
         this.currentUser.toReadList.push(book);
+        this.userService.CurrentUser = this.currentUser;
       }
     );
   }

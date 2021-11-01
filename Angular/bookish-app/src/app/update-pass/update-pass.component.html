@@ -55,8 +55,9 @@
                 <form>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Enter new password</label>
-                      <input type="password" class="form-control" id="password" placeholder="Password" name="password" style="width: 50%; margin-top: 2px;margin-bottom: 7px;">
-                      <button type="button" class="btn btn-dark" id="update-pass-sub" style="width:15%">Submit</button>
+                      <input type="password" class="form-control" id="password" placeholder="Password" name="password" style="width: 50%; margin-top: 2px;margin-bottom: 7px;" #password>
+                      <button type="button" class="btn btn-dark" id="update-pass-sub" style="width:15%" (click)="changePassword(password.value)">Submit</button>
+                      {{message}}
                       
                     </div>
                 </form>

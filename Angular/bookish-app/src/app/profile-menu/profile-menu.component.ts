@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-profile-menu',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileMenuComponent implements OnInit {
 
-  constructor() { }
+  currentUser!: User;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.userService.CurrentUser;
   }
 
 }
