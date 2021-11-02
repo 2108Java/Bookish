@@ -37,7 +37,6 @@ export class HomePageComponent implements OnInit {
   }
 
   switchToRegister(): void {
-    // this.onSwitchToRegister.emit(false);
     this.router.navigate(['/register']);
   }
 

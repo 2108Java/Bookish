@@ -11,8 +11,8 @@ export class UserService {
 
   currentUser!: User;
   registeredUser = {username: "", email: "", password: ""};
-  baseUrl: string = "http://localhost:8000/api";
-  // baseUrl: string = "http://ec2-18-217-229-161.us-east-2.compute.amazonaws.com:8000/api";
+  // baseUrl: string = "http://localhost:8000/api";
+  baseUrl: string = "http://ec2-18-217-229-161.us-east-2.compute.amazonaws.com:8000/api";
   httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
      
