@@ -29,14 +29,15 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public Message registerUser(User user) {
-		Message message = new Message();
+		Message message = new Message("Registration was successful.");
 		
 		user.setPassword(encrypt(user.getPassword()));
 		
-		if (userDao.save(user) != null) {
-			message.setMessage("Registration was successful.");
+		try {
+			userDao.save(user);
 		}
-		else {
+		catch(Exception e) {
+//			e.printStackTrace();
 			message.setMessage("Registration was unsuccessful.");	
 		}
 		
