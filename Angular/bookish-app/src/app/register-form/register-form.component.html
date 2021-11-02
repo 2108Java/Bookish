@@ -1,0 +1,20 @@
+<div class="container-v">
+    <div class="login-form-v">
+      <div class="left-pane"></div>
+      <div class="right-pane">
+        <h2>Register</h2>
+        <div class = "form-input-message">Enter username</div>
+          <input type="text" id="username" name="username" placeholder="Username" #username>
+          <div class = "form-input-message">Enter email address</div>
+          <input type="text" id="email" name="email" placeholder="Email address" #email>
+          <div class = "form-input-message">Enter password</div>
+          <input type="text" id="password" name="password" placeholder="Password" #password>
+          <div style= "margin-top: 5%">
+          <button type="button" id="register-button" class="btn btn-dark" style="margin-bottom: 6px;" (click)="registerUser(username.value, email.value, password.value)">Register</button><br>
+          <button type="button" id="switch-login-button" class="btn btn-dark" (click)="switchToLogin()">Use an Existing Account</button></div>
+          {{message}}
+          
+      </div>
+    </div>
+  
+  </div>

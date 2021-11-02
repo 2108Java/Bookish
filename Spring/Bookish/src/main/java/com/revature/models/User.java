@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+//import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -15,21 +18,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Entity
-@Table(name = "users")
+//@Entity
+//@Table(name = "users")
 public class User {
 	
-	@Column(name = "username")
-	String username;
+//	@Id
+//	@Column(name = "username")
+	private String username;
 	
-	@Column(name = "email")
-	String email;
+//	@Column(name = "email")
+	private String email;
 	
-	@Column(name = "password")
-	String password;
+//	@Column(name = "password")
+	private String password;
 	//image
 	
-	List<Book> read;
-	List<Book> toRead;
+//	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	private List<Book> userBooks;
 
 }
