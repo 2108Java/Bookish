@@ -15,13 +15,13 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { SessionGuard } from './session.guard';
 
 const routes: Routes = [
-{ path: 'login', component: HomePageComponent },
+{ path: '', component: HomePageComponent },
 { path: 'register', component: RegisterFormComponent },
-{ path: 'land-page', component: LandPageComponent },
-{ path: 'read-list', component: ReadListComponent},
-{ path: 'to-read-list', component: ToReadListComponent},
-{ path: 'current-list', component: CurrentListComponent},
-{ path: 'update-pass', component: UpdatePassComponent},
+{ path: 'land-page', component: LandPageComponent, canActivate: [SessionGuard] },
+{ path: 'read-list', component: ReadListComponent, canActivate: [SessionGuard] },
+{ path: 'to-read-list', component: ToReadListComponent, canActivate: [SessionGuard] },
+{ path: 'current-list', component: CurrentListComponent, canActivate: [SessionGuard] },
+{ path: 'update-pass', component: UpdatePassComponent, canActivate: [SessionGuard] },
 { path: 'logout', component: LogoutComponent }];
 
 

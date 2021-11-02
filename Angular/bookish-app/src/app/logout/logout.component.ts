@@ -21,7 +21,7 @@ export class LogoutComponent implements OnInit {
     this.userService.CurrentUser = this.currentUser;
     this.userService.updateList();
     this.userService.logout();
-    // this.router.navigate(['']);
+    this.router.navigate(['']);
   }
 
 }

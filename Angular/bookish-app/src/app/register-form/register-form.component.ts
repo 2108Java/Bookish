@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -23,10 +24,11 @@ export class RegisterFormComponent implements OnInit {
   }
 
   switchToLogin(): void {
-    this.onSwitchToLogin.emit(true);
+    // this.onSwitchToLogin.emit(true);
+    this.router.navigate(['']);
   }
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }

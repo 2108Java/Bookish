@@ -97,7 +97,7 @@
                  <!-- <h6 class="card-title">Subtitle: </h6> --> <!-- We don't need a subtitle. That's going to be put into the title.-->
                  <h6 class="card-title">Author: {{book.author}}</h6>
                 <h6 class="card-title">Description: {{book.description}}</h6>
-                <button id="submitToList" class="btn btn-dark" name="submitToList" style="width: 15%; margin-bottom: 6px;" type="submit" (click)="submitSearchByTitle(searchInput.value)">Add to to-read list</button>
+                <button [id]="book.apiId" class="btn btn-dark" name="submitToList" style="width: 15%; margin-bottom: 6px;" type="submit" (click)="saveBook($event)">Add to to-read list</button>
                 <!--<p class="card-text">{{desc}}</p>-->
                  <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                </div>
