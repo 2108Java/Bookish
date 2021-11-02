@@ -1,0 +1,55 @@
+<div>
+    <nav class="nav-bar" style="background-color: #e3f2fd;">
+        <img src="/assets/book-icon.png" class="logo">
+        <a class="navbar-brand" href="#">Bookish</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+                
+                                 
+             
+                    
+    </nav>
+    
+    </div>
+    
+      <div class = "container">
+          <div class="side-bar">
+          <div class = links>
+            <a routerLink="/land-page" routerLinkActive="active" href="a">Discover new books</a>
+            <a routerLink="/read-list" routerLinkActive="active" href="a">View read list</a>
+            <a routerLink="/to-read-list" routerLinkActive="active" href="a">View to-read list</a>
+            <a routerLink="/update-pass" routerLinkActive="active" href="a">Update password</a>
+            <a routerLink="/logout" routerLinkActive="active" href="a">Logout</a>
+            </div>
+          </div>
+          <div class="main-content">
+            <h3 style="padding-top: 8%;">Your To-Read List</h3>
+            <div class="card-container" style="padding-top: 2%;"><div class="card" style="width: 18rem; position:unset; margin-bottom: 10px;" *ngFor = 'let book of bookList'>
+            <img class="card-img-top" [src]="book.image" alt="book cover image" style="width: 25%; height: 25%">
+            <div class="card-body">
+              <h5 class="card-title">Title: {{book.title}}</h5>
+              <h6 class="card-title">Author: {{book.author}}</h6>
+             <h6 class="card-title">Description: {{book.description}}</h6>
+             <select class="custom-select mr-sm-2" id="ratingDropdown" [(ngModel)]="selectedLevel">
+              <option selected>Choose rating</option>
+              <option value="ZERO">Zero</option>
+              <option value="ONE">One</option>
+              <option value="TWO">Two</option>
+              <option value="THREE">Three</option>
+              <option value="FOUR">Four</option>
+              <option value="FIVE">Five</option>
+            </select>
+            <label for="review">Review</label>
+            <textarea class="form-control" id="review" rows="3" #review></textarea>
+             <button [id]="book.apiId" class="btn btn-dark" name="submitToRead" style="width: 15%; margin-bottom: 6px;" type="submit" (click)="submitFinishedBook($event, review.value)">Finish Book</button>
+             
+            </div>
+          </div>
+          </div>
+    
+          
+          </div>
+      </div>
+    
+    

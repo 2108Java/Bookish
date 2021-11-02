@@ -1,8 +1,5 @@
 package com.revature.controller;
 
-import java.sql.Timestamp;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.models.Book;
 import com.revature.models.Message;
-import com.revature.models.Rating;
 import com.revature.models.User;
 import com.revature.service.BookService;
 import com.revature.service.UserService;
