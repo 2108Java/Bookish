@@ -1,11 +1,8 @@
 package com.revature.controller;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,72 +11,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.models.Book;
 import com.revature.models.Message;
-import com.revature.models.Rating;
 import com.revature.models.User;
+import com.revature.service.BookService;
+import com.revature.service.UserService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"}, allowCredentials = "true")
-@RequestMapping("/api/")
+@CrossOrigin(origins = {"http://23.108.92.207:4200", "http://bookish-angular.s3-website.us-east-2.amazonaws.com/"}, allowCredentials = "true")
+@RequestMapping("/api")
 public class BookishController {
 
-	/**
-	 * create fake list for testing endpoints
-	 */
-	private User testUser;
-	private List<Book> bookList;
+	@Autowired
+	UserService userService;
 	
-	public void initializeFakeData() {
-		testUser = new User("test_user", "test@test.com", "password", bookList);
-		bookList = new ArrayList<>();
-		
-		bookList.add(new Book(1, "mvmGPgAACAAJ", "test_user", "Fake review", Rating.ZERO, new Timestamp(System.currentTimeMillis())));
-		bookList.add(new Book(2, "ZCtfCgAAQBAJ", "test_user", "another fake review", Rating.FIVE, new Timestamp(System.currentTimeMillis())));
-		bookList.add(new Book(3, "JEYCDAAAQBAJ", "test_user", "fake review number 3", Rating.THREE, new Timestamp(System.currentTimeMillis())));
-		
-		bookList.add(new Book(4, "sJsqDwAAQBAJ", "test_user", null, null, null));
-		bookList.add(new Book(5, "hQc8zgEACAAJ", "test_user", null, null, null));
-		bookList.add(new Book(6, "mOrSAwAAQBAJ", "test_user", null, null, null));
-	}
+	@Autowired
+	BookService bookService;
 	
 	//Register - post
 	@PostMapping(value = "/register")
 	public Message registerUser(@RequestBody User user) {
-		Message message = new Message("");
 		
-		if(user != null) {
-			message.setMessage("Registration for " + user.getUsername() + "was successful.");
-		}
-		else {
-			message.setMessage("Registration was unsuccessful.");
-		}
-		
+		Message message = userService.registerUser(user);
 		return message;
 	}
 	
 	//Login - post
 	@PostMapping(value = "/login")
 	public User login(@RequestBody User user, HttpSession session) {
-		initializeFakeData();
+
+		String username = user.getUsername();
+		String password = user.getPassword();
 		
-		if(user.getUsername() != null && user.getPassword() != null) {
-			if(testUser.getUsername().equals(user.getUsername()) && testUser.getPassword().equals(user.getPassword())) {
-				session.setAttribute("username", user.getUsername());
-			}
+		user = userService.authenticate(username, password);
+		
+		if(user != null) {
+			session.setAttribute("username", user.getUsername());
 		}
-		else {
-			testUser = null;
-		}
 		
-		
-		return testUser;
+		return user;
 	}
 	
 	//Validate - get
 	@GetMapping(value = "/session")
-	public boolean checkSession(HttpSession session) {
-		boolean activeSession = false;
+	public Boolean checkSession(HttpSession session) {
+		Boolean activeSession = false;
 		
 		if(session.getAttribute("username") != null) {
 			activeSession = true;
@@ -103,41 +78,25 @@ public class BookishController {
 	
 	//Update password - put
 	@PutMapping(value = "/password")
-	public Message updatePassword(@RequestBody String password) {
-		Message message = new Message("Password not updated.");
+	public Message updatePassword(@RequestBody User user) {
+		String username = user.getUsername();
+		String password = user.getPassword();
 		
-		testUser.setPassword(password);
-		if(testUser.getPassword().equals(password)) {
-			message.setMessage("Password updated successfully.");
-		}
+		Message message = userService.updatePassword(username,password);
 		
 		return message;
 	}
 	
 	//Update list - put
 	@PutMapping(value = "/list")
-	public Message updateReadList(@RequestBody List<Book> updateRead) {
-		Message message = new Message("Read list not updated.");
+	public Message updateReadList(@RequestBody User user) {
+		Message message = new Message("Book list not updated.");
 		
-		bookList = updateRead;
-		if(bookList == updateRead) {
-			message.setMessage("Read list updated.");
+		if(bookService.updateBookList(user)) {
+			message.setMessage("Book list successfully updated.");
 		}
 		
 		return message;
 	}
-	
-//	@PutMapping(value = "/list/toRead")
-//	public String updateToReadList(@RequestBody List<Book> updateToRead) {
-//		String message = "To read list not updated.";
-//		
-//		toRead = updateToRead;
-//		if(toRead == updateToRead) {
-//			message = "list updated.";
-//		}
-//		
-//		return message;
-//	}
-
 	
 }
