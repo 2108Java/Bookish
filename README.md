@@ -49,6 +49,7 @@ Update the application.properties file - the username, password, and database en
 In BookishController.java the options for @CrossOrigin should be updated - to run locally remove the existing array and add http://localhost:4200  
 
 To run the Angular SPA:  
+Inside the application directory open the Angular CLI and run npm install  
 Update the user.service.ts file - the baseUrl should be http://localhost:8000/api  
 
 # Usage
